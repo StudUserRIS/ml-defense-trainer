@@ -1,0 +1,22 @@
+name = "ml-defense-trainer"
+main = "worker/index.js"
+compatibility_date = "2025-09-15"
+
+assets = { directory = "./public", binding = "ASSETS" }
+
+# Создайте базу D1 командой из INSTALL.txt, затем замените database_id.
+[[d1_databases]]
+binding = "DB"
+database_name = "ml-defense-trainer"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+# Для production укажите точный URL сайта, например https://ml-defense.example.com
+# Если Worker и frontend опубликованы вместе, можно оставить пустым.
+ALLOWED_ORIGIN = ""
+GEMINI_FAST_MODEL = "gemini-3.8-flash"
+GEMINI_DEEP_MODEL = "gemini-3.1-pro-preview"
+
+# Не добавляйте GEMINI_API_KEY в этот файл или в frontend.
+# Задайте секрет: npx wrangler secret put GEMINI_API_KEY
+# Для устойчивого rate limit рекомендуется также: npx wrangler secret put RATE_LIMIT_SALT
